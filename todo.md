@@ -1,0 +1,23 @@
+- [ ] Search Tools
+- [ ] Docs
+  - [ ] MSDN
+  - [ ] MDN
+  - [ ] jQuery
+- [ ] Url Shorten
+- [ ] Encode/Decode/Transform
+  - [ ] md5
+  - [ ] SHA1
+  - [ ] AES
+  - [ ] Base64
+  - [ ] HTML Escape
+  - [ ] RGB/Hex
+  - [ ] Number System
+  - [ ] ASCII
+  - [ ] UTF8
+- [ ] Dict
+  - [ ] MIME Types
+  - [ ] Operator Precedence
+- [ ] Random
+  - [ ] Password
+  - [ ] Integer
+- [ ] QR Code Generate/Parse

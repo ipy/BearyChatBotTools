@@ -26,3 +26,11 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# C9.IO
+.c9
+
+# LeanCloud Configuration
+BearyChatBotTools/config
+
+
