@@ -38,6 +38,13 @@ exports.runTool = function runTool (tool, args) {
 }
 
 exports.getToolUsage = function getToolUsage (tool, args) {
+  tool = tool || {
+    usage: '使用 “触发词 usage” 命令查看用法',
+    sub: toolsConfig.tools.reduce(function(seed, toolName){
+      seed[toolName] = require('cloud/tools/' + toolName);
+      return seed;
+    }, {})
+  };
   args = args || [];
   if (tool.sub && args.length > 0) {
     for (var subTool in tool.sub) {
@@ -46,5 +53,16 @@ exports.getToolUsage = function getToolUsage (tool, args) {
       }
     }
   }
-  return tool.usage;
+
+  var contents = [];
+  contents.push(tool.usage + '\n');
+  if (tool.sub) {
+    contents.push('子方法：')
+    Object.keys(tool.sub).forEach(function (key) {
+      contents.push('    * ' + key + (tool.sub[key].usage
+        ? ('：' + tool.sub[key].usage)
+        : ''));
+    });
+  }
+  return contents.join('\n');
 }
