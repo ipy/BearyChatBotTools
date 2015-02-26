@@ -1,8 +1,6 @@
 var tools = require('../tools');
 
-module.exports = tool;
-
-var tool = {
+module.exports = {
   usage: '',
   func: function() {
     if (arguments.length === 0) {

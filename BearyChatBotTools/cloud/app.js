@@ -26,11 +26,15 @@ function main (req, res) {
     .replace(/^\s+/, '')
     .replace(/\s+$/, '')
     .split(/\s+/);
+  if (!args.length || !args[0]) {
+    res.json({text: '使用 usage 命令查看用法'});
+    return;
+  }
   var tool = tools.tryRequire(args[0]);
   if (tool) {
     var text = tools.runTool(tool, args.splice(1));
     if (!text) {
-      text = '无返回结果';
+      text = '无结果';
     }
     res.json({text: text.toString()});
     return;

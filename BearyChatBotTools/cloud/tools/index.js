@@ -1,18 +1,20 @@
-var toolsConfig = require('./toolsConfig');
+var toolsConfig = require('cloud/toolsConfig');
 
 exports.tryRequire = function tryRequire (name) {
   if (!name) return undefined;
-  var moduleName = 'tools/' + name;
+  var moduleName = 'cloud/tools/' + name;
   try {
-    return require(name);
+    return require(moduleName);
   } catch (e) {
     var aliases = toolsConfig.alias[name];
-    if (typeof aliases === 'string') {
-      aliases = [aliases];
-    }
-    for (var i = 0; i < aliases.length; i++) {
-      var requiredModule = tryRequire(aliases[i]);
-      if (requiredModule) return requiredModule;
+    if (aliases) {
+      if (typeof aliases === 'string') {
+        aliases = [aliases];
+      }
+      for (var i = 0; i < aliases.length; i++) {
+        var requiredModule = tryRequire(aliases[i]);
+        if (requiredModule) return requiredModule;
+      }
     }
     return undefined;
   }
