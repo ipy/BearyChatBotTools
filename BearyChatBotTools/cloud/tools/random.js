@@ -1,30 +1,47 @@
-module.exports = function() {
-  if (!arguments.length) {
+module.exports = tool;
+
+var tool = {
+  usage: '',
+  func: function() {
     return Math.random();
-  }
-  switch (arguments[0]) {
-    case 'int':
-      if (arguments.length > 3) {
+  },
+  sub: {
+    'int': {
+      usage: '',
+      func: function (min, max, repeat) {
         var result = '';
-        for (var i = 0; i<parseInt(arguments[3]); i++) {
-          result = result + randInt(parseInt(arguments[1]), parseInt(arguments[2])) + '\n';
+        for (var i = 0; i<repeat; i++) {
+          result = result + randInt(min, max) + '\n';
         }
         return result;
-      } else if (arguments.length === 3) {
-        return randInt(parseInt(arguments[1]), parseInt(arguments[2])).toString();
-      } else if (arguments.length === 2) {
-        return randInt(0, parseInt(arguments[1])).toString();
-      } else {
-        return randInt(0, Number.MAX_VALUE).toString();
+      },
+      parser: function(){
+        var min, max, repeat;
+        repeat = 1;
+        switch (arguments.length) {
+          case 0:
+            min = 0;
+            max = Number.MAX_SAFE_INTEGER;
+            break;
+          case 1:
+            min = 1;
+            max = parseInt(arguments[0]);
+            break;
+          default:
+            min = parseInt(arguments[0]);
+            max = parseInt(arguments[1]);
+            if(arguments.length >= 3) {
+              repeat = parseInt(arguments[2]);
+            }
+            break;
+        }
+        return [min, max, repeat];
       }
-      break;
-    
-    case 'password':
-    case 'pass':
-      return randPassword();
-      
-    default:
-      // code
+    },
+    'select': {
+      usage: '',
+      func: randSelect
+    }
   }
 }
 
@@ -34,6 +51,13 @@ function randInt(min, max) {
 	return min + rand;
 }
 
-function randPassword() {
-  return "not implemented";
+function randSelect() {
+  switch (arguments.length) {
+    case 0:
+      return;
+    case 1:
+      return arguments[0];
+    default:
+      return arguments[randInt(0, arguments.length)];
+  }
 }

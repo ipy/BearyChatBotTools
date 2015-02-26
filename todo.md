@@ -18,6 +18,7 @@
   - [ ] MIME Types
   - [ ] Operator Precedence
 - [ ] Random
-  - [ ] Password
   - [ ] Integer
+  - [ ] Select
+- [ ] Password Generation
 - [ ] QR Code Generate/Parse
