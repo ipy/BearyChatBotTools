@@ -1,0 +1,15 @@
+{
+  "name": "BearyChatBotTools",
+  "version": "0.0.1",
+  "description": "",
+  "main": "cloud/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sin",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^2.9.12",
+    "request": "^2.53.0"
+  }
+}

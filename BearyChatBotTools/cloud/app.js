@@ -32,13 +32,16 @@ function main (req, res) {
   }
   var tool = tools.tryRequire(args[0]);
   if (tool) {
-    var text = tools.runTool(tool, args.splice(1));
-    if (typeof text === 'undefined') {
-      text = '无结果';
-    }
-    res.json({text: text.toString(), markdown: true});
-    return;
+    tools.runTool(tool, args.splice(1)).then(function(text){
+      if (typeof text === 'undefined') {
+        text = '无结果';
+      }
+      res.json({text: text.toString(), markdown: true});
+    }).catch(function(e){
+      res.json({text: '失败了：' + e});
+    });
+  } else {
+    res.json({text: '未找到该功能'});
   }
-  res.json({text: '未找到该功能'});
 }
 

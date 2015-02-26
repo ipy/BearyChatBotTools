@@ -1,6 +1,7 @@
+var Promise = require('bluebird');
 var toolsConfig = require('cloud/toolsConfig');
 
-exports.tryRequire = function tryRequire (name) {
+function tryRequire (name) {
   if (!name) return undefined;
   var moduleName = 'cloud/tools/' + name;
   try {
@@ -20,7 +21,7 @@ exports.tryRequire = function tryRequire (name) {
   }
 }
 
-exports.runTool = function runTool (tool, args) {
+function runTool (tool, args) {
   args = args || [];
   if (tool.sub && args.length > 0) {
     for (var subTool in tool.sub) {
@@ -30,16 +31,22 @@ exports.runTool = function runTool (tool, args) {
     }
   }
   if (typeof tool.parser === 'function') {
-    args = tool.parser(args);
+    try {
+      args = tool.parser(args);
+    } catch (e) {
+      return Promise.reject('参数错误')
+    }
   }
   if (typeof tool.func === 'function') {
-    return tool.func.apply(tool, args);
+    return Promise.resolve(tool.func.apply(tool, args));
+  } else {
+    return Promise.resolve(getToolUsage(tool, args));
   }
-}
+};
 
-exports.getToolUsage = function getToolUsage (tool, args) {
+function getToolUsage (tool, args) {
   tool = tool || {
-    usage: '使用 “触发词 usage” 命令查看用法',
+    usage: '使用 “触发词 usage 工具名” 命令查看用法',
     sub: toolsConfig.tools.reduce(function(seed, toolName){
       seed[toolName] = require('cloud/tools/' + toolName);
       return seed;
@@ -57,7 +64,7 @@ exports.getToolUsage = function getToolUsage (tool, args) {
   var contents = [];
   contents.push(tool.usage + '\n');
   if (tool.sub) {
-    contents.push('子方法：')
+    contents.push('子方法：');
     Object.keys(tool.sub).forEach(function (key) {
       contents.push('    * ' + key + (tool.sub[key].usage
         ? ('：' + tool.sub[key].usage)
@@ -65,4 +72,8 @@ exports.getToolUsage = function getToolUsage (tool, args) {
     });
   }
   return contents.join('\n');
-}
+};
+
+exports.tryRequire = tryRequire;
+exports.runTool = runTool;
+exports.getToolUsage = getToolUsage;

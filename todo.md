@@ -17,8 +17,7 @@
 - [ ] Dict
   - [ ] MIME Types
   - [ ] Operator Precedence
-- [ ] Random
-  - [ ] Integer
-  - [ ] Select
-- [ ] Password Generation
+- [x] Random
+  - [x] Integer
+  - [x] Select
 - [ ] QR Code Generate/Parse
