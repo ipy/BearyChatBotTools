@@ -24,7 +24,7 @@ BearyChat 机器人，提供一系列常用工具。
 
     /t random [min] [max] [count]
 
-返回范围为 `count` 个 `min` 到 `max-1` 的随机整数
+返回 `count` 个范围为 `min` 到 `max-1` 的随机整数
 
 ### 随机选择工具
 
