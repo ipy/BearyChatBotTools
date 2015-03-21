@@ -35,4 +35,6 @@ app.post('/', function(req,res){
     .finally(function(){
       res.end();
     });
-})
+});
+
+app.listen();
