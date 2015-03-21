@@ -32,8 +32,18 @@ BearyChat 机器人，提供一系列常用工具。
 
 从空格分割的选项中随机选择一个
 
+### UUID
+
+    /t random uuid
+
+生成一个 v4 uuid
+
+    /t random uuid 1
+
+生成一个 v1 uuid
+
 ## 转换工具
-单位进制转换工具，目前只实现了 hex 到 rgb 的转换
+单位进制等转换工具
 
 ### hex2rgb
 
@@ -42,6 +52,21 @@ BearyChat 机器人，提供一系列常用工具。
 返回
 
     rgb(255,255,255)
+
+### md5
+
+    /t transform md5 内容
+
+### base64
+
+    /t transform base64 内容
+    /t transform base64 encode 内容
+
+对字符串进行 base64 编码
+
+    /t transform base64 decode 编码内容
+
+base64 解码
 
 ## 短链工具
 生成短链，默认使用 `t.cn`
@@ -79,4 +104,4 @@ BearyChat 机器人，提供一系列常用工具。
 
     /t domain test.com
 
-查询是否已被注册
+查询域名是否已被注册

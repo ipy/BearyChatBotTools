@@ -9,10 +9,14 @@
   "author": "Sin",
   "license": "MIT",
   "dependencies": {
+    "MD5": "^1.2.1",
+    "base64": "^2.1.0",
     "bluebird": "^2.9.12",
     "chalk": "^1.0.0",
     "command": "0.0.5",
+    "md5": "^1.0.0",
     "request": "^2.53.0",
+    "uuid": "^2.0.1",
     "yargs": "^3.5.4"
   }
 }
