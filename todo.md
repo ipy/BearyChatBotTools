@@ -3,7 +3,7 @@
   - [ ] MSDN
   - [ ] MDN
   - [ ] jQuery
-- [ ] Url Shorten
+- [x] Url Shorten
 - [ ] Encode/Decode/Transform
   - [ ] md5
   - [ ] SHA1

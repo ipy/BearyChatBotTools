@@ -29,9 +29,9 @@ app.post('/', function(req,res){
     then(function(result){
       res.json({text: result});
     })
-    // .catch(function(info){
-    //   res.json({text: '执行失败,' + info})
-    // })
+    .catch(function(info){
+      res.json({text: '执行失败,' + info})
+    })
     .finally(function(){
       res.end();
     });
