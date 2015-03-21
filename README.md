@@ -75,3 +75,8 @@ BearyChat 机器人，提供一系列常用工具。
 
     /t weather [城市拼音，如 shanghai]
 
+## 域名查询
+
+    /t domain test.com
+
+查询是否已被注册
