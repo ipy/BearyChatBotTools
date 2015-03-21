@@ -30,27 +30,26 @@ tool.run = function(text){
         }
         var result = '';
         for(var css in json){
-          result += '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n';
           result += '  (种类:'+json[css].categories+')\n';
 
           var bro = json[css].stats;
           for(var browser in bro){
-            result += ('~' + browser + '\n');
+            result += ('### ' + browser + '\n');
+
+            result += '> ';
 
             var ver = json[css]['stats'][browser];
-
             for(var version in ver){
               if(ver[version] == 'y'){
-                result += (' √'+version+':'+ver[version]+'  ');
+                result += (' '+version+':'+ '√' +'    ');
               } else if (ver[version] == 'n'){
-                result += (' ×'+version+':'+ver[version]+'  ');
+                result += (' `'+version+':'+ '×' +'`    ');
               } else {
-                result += (' -'+version+':'+ver[version]+'  ');
+                result += (' '+version+':'+ '-' +'    ');
               }
             }
-            result += ' \n';
+            result += ' \n\n';
           }
-          result += '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n';
           result += ' \n';
         }
         return resolve(result);
