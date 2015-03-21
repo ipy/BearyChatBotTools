@@ -1,7 +1,7 @@
 var Promise = require('bluebird');
 var load = require('cloud/tools/loader').load;
 
-var subToolNames = ['random', 'surl', 'transform', 'caniuse'];
+var subToolNames = ['random', 'surl', 'transform', 'caniuse', 'ip'];
 var tools = load('', subToolNames)
 
 function getTool(tool, text) {
